@@ -1,0 +1,46 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "m5p3nc3r homepage"
+theme = "m5p3nc3r"
+sort = "Date"
+
+[params]
+  description = "Blog posts, technical diary etc. from m5p3nc3r"
+
+[frontmatter]
+  date  = [":filename", ":default"]
+
+[[menu.main]]
+  name = "About"
+  url = "/about"
+
+[[menu.main]]
+  name = "Blog"
+  url = "/blog"
+
+[[menu.main]]
+  name = "Boards"
+  url = "/boards"
+
+[[menu.social]]
+    name = "GitHub"
+    url = "https://github.com/m5p3nc3r"
+    pre = "<i class='fab fa-github'></i>"
+
+[[menu.social]]
+    name = "Linkedin"
+    url = "https://www.linkedin.com/in/matt-spencer-8551712/"
+    pre = "<i class='fab fa-linkedin'></i>"
+
+[[menu.social]]
+    name = "Twitter"
+    url = "https://twitter.com/m5p3nc3r"
+    pre = "<i class='fab fa-twitter'></i>"
+
+[[menu.footer]]
+  name = "About"
+  url = "/about"
+
+[[menu.footer]]
+  name = "Privacy"
+  url = "/privacy"
