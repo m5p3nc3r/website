@@ -6,4 +6,4 @@ card_image: https://www.raspberrypi.org/homepage-9df4b/static/90d7d8e3687e9ce4a3
 
 # Raspberry Pi 4
 
-Content to come...
+Serial port connection - outside connection 3 Black, 4 White, 5 Green

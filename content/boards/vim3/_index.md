@@ -6,3 +6,5 @@ card_image: "https://static.wixstatic.com/media/04a2a6_e620b55023224a4faeff88c5b
 ---
 
 ## Khadas Vim3
+
+Serial port connection - inside connection 21 White, 22 Green, 23 Back
