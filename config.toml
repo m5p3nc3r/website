@@ -1,6 +1,6 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
-title = "m5p3nc3r homepage"
+title = "m5p3nc3r"
 theme = "m5p3nc3r"
 sort = "Date"
 
@@ -10,9 +10,9 @@ sort = "Date"
 [frontmatter]
   date  = [":filename", ":default"]
 
-[[menu.main]]
-  name = "About"
-  url = "/about"
+#[[menu.main]]
+#  name = "About"
+#  url = "/about"
 
 [[menu.main]]
   name = "Blog"
@@ -21,6 +21,10 @@ sort = "Date"
 [[menu.main]]
   name = "Boards"
   url = "/boards"
+
+[[menu.main]]
+  name = "Projects"
+  url = "/projects"
 
 [[menu.social]]
     name = "GitHub"
