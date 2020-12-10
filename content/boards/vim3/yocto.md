@@ -77,6 +77,7 @@ IMAGE_INSTALL_append = " git e2fsprogs-mke2fs e2fsprogs-resize2fs"
 DL_DIR = "${TOPDIR}/../downloads"
 SSTATE_DIR = "${TOPDIR}/../sstate-cache"
 ```
+
 Build the image
 
 ```bash
@@ -96,8 +97,8 @@ sudo dd status=progress conv=fsync \
 The current build does not have NVMe support in the devicetree configuration.  This needs to be enabled by use of an overlay or modifying the devicetree manually in uboot using the ```fdt``` command.  The problem is the default boot flow used by the meta-meson recipes uses syslinux configuration and I can't find a sensible way of doing this with that boot flow.
 
 Workaround for this is to remove the default boot command in ```/boot/syslinux/xxx.conf``` and create a properly signed ```/boot/boot.cfg```.  The default boot flow will pick up this new config and we can put our ```fdt``` commands here.
-```bash
 
+```bash
 # Mount the root filesystem
 sudo mount /dev/mmcblk0p1 root
 
