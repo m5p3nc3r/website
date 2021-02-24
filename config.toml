@@ -1,7 +1,7 @@
 baseURL = "http://example.org/"
 languageCode = "en-us"
 title = "m5p3nc3r"
-theme = "m5p3nc3r"
+theme = "hugo-m5p3nc3r"
 sort = "Date"
 
 [params]
