@@ -62,20 +62,26 @@ source poky/oe-init-build-env build-vim3
 Configure our build by adding the following to the end of the conf/local.conf
 
 ```bash
-MACHINE = "khadas-vim3"
-# linux-yocto is not the default kernel, select it here
-PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
-# We need kernel changes for containers, this pulls them in
-DISTRO_FEATURES_append = " virtualization"
-
-# Kernel modules are needed for the container runtimes
-IMAGE_INSTALL_append = " docker bash kernel-modules dropbear"
-# These dependencies are just for development
-IMAGE_INSTALL_append = " git e2fsprogs-mke2fs e2fsprogs-resize2fs"
-
 # Update the storage location of share assets to speed up the build
 DL_DIR = "${TOPDIR}/../downloads"
 SSTATE_DIR = "${TOPDIR}/../sstate-cache"
+
+MACHINE = "khadas-vim3"
+
+# Configure the hostname for the final image
+hostname_pn-base-files = "k3s-control"
+
+# linux-yocto is not the default kernel, select it here
+PREFERRED_PROVIDER_virtual/kernel = "linux-yocto"
+# We need kernel changes for containers, this pulls them in
+DISTRO_FEATURES_append = " virtualization seccomp"
+
+# Kernel modules are needed for the container runtimes
+#IMAGE_INSTALL_append = " docker bash kernel-modules dropbear"
+IMAGE_INSTALL_append = " k3s k3s-server bash kernel-modules dropbear libgcc"
+# These dependencies are just for development
+IMAGE_INSTALL_append = " git e2fsprogs-mke2fs e2fsprogs-resize2fs"
+
 ```
 
 Build the image
@@ -124,4 +130,15 @@ sudo mkimage -A arm -T script -O linux -d root/boot/boot.txt root/boot/boot.scr
 
 # Unmount the root filesystem
 sudo umount root
+```
+
+### Problems with hardknott
+
+When using linux-yocto-dev in hardknott, the current kernel (5.12+) does not seem to work on the vim3.  I think this is due to the EMMC not being powered in time because there seems to be a change in the way the regulators for power control are initialised.  The EMMC_AO1V8 is powered after the boot sequence wants to detect the emmc device.
+
+Workaround for now is to use linux-yocto, instead of linux-yocto-dev.  So I changed my local.conf to include
+
+```bash
+#The kernel seems to be broken for vim3 in hardknott, bring it back to a known working version
+PREFERRED_PROVIDER_virtual/kernel_meson-gx = "linux-yocto"
 ```
